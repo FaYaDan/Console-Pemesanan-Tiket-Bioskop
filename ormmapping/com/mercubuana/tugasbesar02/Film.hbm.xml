@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.mercubuana.tugasbesar02.Film" table="Film" lazy="false">
+		<id name="idFiilm" column="id_film" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="judulFilm" column="judul_film" type="string" length="10" not-null="true" lazy="false"/>
+		<property name="kategoriFilm" column="kategori_film" type="character" length="1" not-null="true" lazy="false"/>
+		<property name="jumlahKursi" column="jumlah_kursi" type="integer" length="3" not-null="true" lazy="false"/>
+		<property name="sisaKursi" column="sisa_kursi" type="integer" length="3" not-null="true" lazy="false"/>
+		<set name="ORM_Pemesan" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="Filmid_film" not-null="true"/>
+			<one-to-many class="com.mercubuana.tugasbesar02.Pemesan"/>
+		</set>
+	</class>
+</hibernate-mapping>
